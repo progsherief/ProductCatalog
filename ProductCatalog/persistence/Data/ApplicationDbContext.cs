@@ -20,6 +20,14 @@ public class ApplicationDbContext:IdentityDbContext<ApplicationUser>
       .HasMany(p => p.History)
       .WithOne(h => h.Product)
       .HasForeignKey(h => h.ProductId);
+
+
+        modelBuilder.Entity<ProductHistory>()
+    .HasOne<ApplicationUser>()
+    .WithMany()
+    .HasForeignKey(h => h.UpdatedByUserId)
+    .OnDelete(DeleteBehavior.Restrict);
+
         // Seeding Categories
         modelBuilder.Entity<Category>().HasData(
             new Category { Id = Guid.Parse("11111111-1111-1111-1111-111111111111"),Name = "Electronics" },
