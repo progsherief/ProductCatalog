@@ -1,10 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using ProductCatalog.Core.Domain.Contracts;
-using ProductCatalog.Infrastructure.Persistence.Repositories;
-using ProductCatalog.Infrastructure.Persistence;
-using Domain.Contracts;
+﻿
+using Infrastructure.Persistence.Repositories;
 
 namespace Infrastructure.Persistence;
 

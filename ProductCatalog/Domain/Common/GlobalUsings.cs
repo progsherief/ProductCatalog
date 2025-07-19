@@ -1,4 +1,6 @@
 ﻿global using System;
 global using System.Collections.Generic;
 global using ProductCatalog.Core.Domain.Entities;
-global using ProductCatalog.Core.Domain.Contracts;
+
+
+global using System.Linq.Expressions;

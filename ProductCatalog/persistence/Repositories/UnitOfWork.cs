@@ -1,4 +1,5 @@
-﻿namespace Infrastructure.Persistence;
+﻿
+namespace Infrastructure.Persistence;
 
 public class UnitOfWork:IUnitOfWork
 {
