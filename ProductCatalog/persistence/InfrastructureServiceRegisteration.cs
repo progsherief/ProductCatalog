@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using ProductCatalog.Core.Domain.Contracts;
 using ProductCatalog.Infrastructure.Persistence.Repositories;
 using ProductCatalog.Infrastructure.Persistence;
+using Domain.Contracts;
 
 namespace Infrastructure.Persistence;
 
@@ -17,7 +18,7 @@ public static class InfrastructureServiceRegistration
 
         // Register Generic Repository
         services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
-
+        services.AddScoped<IUnitOfWork,UnitOfWork>();
         // Register Unit of Work
         //services.AddScoped<IUnitOfWork,UnitOfWork>();
 
