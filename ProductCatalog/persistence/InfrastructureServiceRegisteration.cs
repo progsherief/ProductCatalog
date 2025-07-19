@@ -15,8 +15,9 @@ public static class InfrastructureServiceRegistration
         services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IProductService,ProductService>();
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         // Register Unit of Work
-        //services.AddScoped<IUnitOfWork,UnitOfWork>();
+        services.AddScoped<IUnitOfWork,UnitOfWork>();
 
         return services;
     }
