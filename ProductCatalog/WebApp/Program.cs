@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ProductCatalog.Infrastructure.Persistence;
-
+using Infrastructure.Persistence;
 namespace WebApp
 {
     public class Program
@@ -14,7 +14,7 @@ namespace WebApp
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+            builder.Services.AddInfrastructureServices(builder.Configuration);
 
             var app = builder.Build();
 

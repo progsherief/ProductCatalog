@@ -1,4 +1,4 @@
-﻿namespace ProductCatalog.Core.Domain.Common;
+﻿namespace Domain.Common;
 
 public abstract class BaseEntity<TKey>
 {

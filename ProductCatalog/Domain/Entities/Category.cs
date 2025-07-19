@@ -1,4 +1,4 @@
-﻿using ProductCatalog.Core.Domain.Common;
+﻿using Domain.Common;
 
 namespace ProductCatalog.Core.Domain.Entities;
 
