@@ -1,30 +1,29 @@
-﻿namespace Shared.ViewModels.Product
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
+
+namespace Shared.ViewModels.Product
 {
-    public class ProductCreateViewModel
+    public class ProductEditViewModel
     {
+        [Required]
         public Guid Id { get; set; }
 
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
 
         [Required]
         public DateTime StartDate { get; set; }
 
         [Required]
-        [Range(1,365)]
         public int DurationInDays { get; set; }
 
         [Required]
-        [Range(0,double.MaxValue)]
         public decimal Price { get; set; }
 
         [Required]
         public Guid CategoryId { get; set; }
 
-       
-        public IFormFile? ImageFile { get; set; }
-
-       
+        public IFormFile? ImageFile { get; set; } // optional if not changed
         public string? ImagePath { get; set; }
     }
 }

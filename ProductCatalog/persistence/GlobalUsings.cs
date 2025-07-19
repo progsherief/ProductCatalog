@@ -2,7 +2,7 @@
 global using Microsoft.EntityFrameworkCore;
 global using System.Linq.Expressions;
 global using Domain.Contracts;
-global using Infrastructure.Persistence.Repositories;
+
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 global using ProductCatalog.Core.Domain.Entities;

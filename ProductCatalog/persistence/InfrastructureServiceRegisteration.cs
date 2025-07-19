@@ -1,6 +1,7 @@
 ﻿
 
 
+using ProductCatalog.Infrastructure.Repositories;
 using ServiceAbstractions;
 using Services.Implementations;
 using Services.Mappings;
@@ -24,6 +25,7 @@ public static class InfrastructureServiceRegistration
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddAutoMapper(typeof(ProductMappingProfile).Assembly);
         services.AddScoped<ICategoryService,CategoryService>();
+
         return services;
     }
 }

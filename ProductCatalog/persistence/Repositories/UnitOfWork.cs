@@ -1,4 +1,6 @@
 ﻿
+using ProductCatalog.Infrastructure.Repositories;
+
 namespace Infrastructure.Persistence;
 
 public class UnitOfWork:IUnitOfWork

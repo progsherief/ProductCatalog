@@ -3,6 +3,7 @@ using ProductCatalog.Infrastructure.Persistence;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using persistence.Identity;
+using WebApp.Services;
 
 namespace WebApp
 {
@@ -25,9 +26,9 @@ namespace WebApp
                 options.User.RequireUniqueEmail = true;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();        
-            
+            .AddDefaultTokenProviders();
 
+            builder.Services.AddScoped<IFileService,FileService>();
             builder.Services.AddInfrastructureServices(builder.Configuration);
 
 

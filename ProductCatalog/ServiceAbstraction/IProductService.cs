@@ -1,15 +1,15 @@
 ﻿using Shared.ViewModels.Product;
 
-namespace ServiceAbstractions
+namespace ProductCatalog.Core.Contracts
 {
     public interface IProductService
     {
-        Task<IEnumerable<ProductViewModel>> GetAvailableProductsAsync();
-        Task CreateProductAsync(ProductCreateViewModel model,string imagePath,string userId);
-        Task<ProductViewModel> GetByIdAsync(Guid id);
+        Task AddProductAsync(ProductCreateViewModel model,string userId);
+        Task EditProductAsync(ProductEditViewModel model,string userId);
         Task DeleteAsync(Guid id);
-        Task<IEnumerable<ProductViewModel>> GetAllAsync();
-        Task<IEnumerable<ProductViewModel>> GetByCategoryAsync(Guid categoryId);
-        Task<IEnumerable<ProductViewModel>> SearchByNameAsync(string searchTerm);
+        Task<List<ProductViewModel>> GetAllAsync();
+        Task<List<ProductViewModel>> GetAvailableProductsAsync();
+        Task<List<ProductViewModel>> SearchByNameAsync(string name);
+        Task<List<ProductViewModel>> FilterByCategoryAsync(Guid categoryId);
     }
 }

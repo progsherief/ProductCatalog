@@ -14,8 +14,12 @@ namespace Services.Mappings
             CreateMap<Category,CategoryViewModel>();
             CreateMap<Product,ProductViewModel>()
     .ForMember(dest => dest.CategoryName,opt => opt.MapFrom(src => src.Category.Name));
+           
 
-
+            CreateMap<ProductEditViewModel,Product>()
+                .ForMember(dest => dest.ImagePath,opt => opt.Ignore()) 
+                .ForMember(dest => dest.CreatedAt,opt => opt.Ignore()) 
+                .ForMember(dest => dest.CreatedByUserId,opt => opt.Ignore());
         }
     }
 }
