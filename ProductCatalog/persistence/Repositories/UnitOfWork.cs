@@ -14,13 +14,13 @@ public class UnitOfWork:IUnitOfWork
         _context = context;
     }
 
-    public IGenericRepository<Product> Products
+    public IGenericRepository<Product> ProductRepository
         => _productRepository ??= new GenericRepository<Product>(_context);
 
-    public IGenericRepository<Category> Categories
+    public IGenericRepository<Category> CategoryRepository
         => _categoryRepository ??= new GenericRepository<Category>(_context);
 
-    public IGenericRepository<ProductHistory> ProductHistories
+    public IGenericRepository<ProductHistory> ProductHistoryRepository
         => _productHistoryRepository ??= new GenericRepository<ProductHistory>(_context);
 
     public async Task<int> SaveChangesAsync()

@@ -1,4 +1,4 @@
-﻿
+﻿namespace WebApp.ViewModels.Account;
 public class RegisterViewModel
 {
     [Required, EmailAddress]

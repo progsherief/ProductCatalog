@@ -1,6 +1,10 @@
 ﻿
 
 
+using ServiceAbstractions;
+using Services.Implementations;
+using Services.Mappings;
+
 namespace Infrastructure.Persistence;
 
 public static class InfrastructureServiceRegistration
@@ -14,11 +18,12 @@ public static class InfrastructureServiceRegistration
         // Register Generic Repository
         services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
         services.AddScoped<IUnitOfWork,UnitOfWork>();
-        services.AddScoped<IProductService,ProductService>();
+        //services.AddScoped<IProductService,ProductService>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         // Register Unit of Work
         services.AddScoped<IUnitOfWork,UnitOfWork>();
-
+        services.AddAutoMapper(typeof(ProductMappingProfile).Assembly);
+        services.AddScoped<ICategoryService,CategoryService>();
         return services;
     }
 }
