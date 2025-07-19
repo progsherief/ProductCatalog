@@ -10,7 +10,10 @@ namespace Services.Mappings
         {
             CreateMap<ProductCreateViewModel,Product>()
                 .ForMember(dest => dest.ImagePath,opt => opt.Ignore());
+
             CreateMap<Category,CategoryViewModel>();
+            CreateMap<Product,ProductViewModel>()
+    .ForMember(dest => dest.CategoryName,opt => opt.MapFrom(src => src.Category.Name));
 
 
         }

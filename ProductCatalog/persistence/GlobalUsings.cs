@@ -8,7 +8,6 @@ global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using ProductCatalog.Core.Domain.Entities;
 global using Services;
 global using Microsoft.AspNetCore.Identity;
-global using Services.ServiceAbstractions;
 
 global using ProductCatalog.Infrastructure.Persistence;
 // Domain & Contracts

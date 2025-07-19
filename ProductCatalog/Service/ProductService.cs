@@ -1,37 +1,72 @@
-﻿
-//using Services.ServiceAbstractions;
+﻿using AutoMapper;
+using ServiceAbstractions;
+using Shared.ViewModels.Product;
 
-//namespace Services;
+namespace Services.Implementations
+{
+    public class ProductService:IProductService
+    {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-//public class ProductService:IProductService
-//{
-//    private readonly IUnitOfWork _unitOfWork;
+        public ProductService(IUnitOfWork unitOfWork,IMapper mapper)
+        {
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+        }
 
-//    public ProductService(IUnitOfWork unitOfWork)
-//    {
-//        _unitOfWork = unitOfWork;
-//    }
+        public async Task<IEnumerable<ProductViewModel>> GetAvailableProductsAsync()
+        {
+            var spec = new ProductsAvailableNowSpecification();
+            var products = await _unitOfWork.ProductRepository.GetAllAsync(spec);
+            return _mapper.Map<IEnumerable<ProductViewModel>>(products);
+        }
 
-//    public async Task<IEnumerable<Product>> GetAllAsync()
-//    {
-//        return await _unitOfWork.Products.GetAllAsync();
-//    }
+        public async Task<IEnumerable<ProductViewModel>> GetAllAsync()
+        {
+            var products = await _unitOfWork.ProductRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<ProductViewModel>>(products);
+        }
 
-//    public async Task<IEnumerable<Product>> GetAvailableNowAsync()
-//    {
-//        var spec = new ProductsAvailableNowSpecification();
-//        return await _unitOfWork.Products.GetAllAsync(spec);
-//    }
+        public async Task<ProductViewModel> GetByIdAsync(Guid id)
+        {
+            var product = await _unitOfWork.ProductRepository.GetByIdAsync(id);
+            return _mapper.Map<ProductViewModel>(product);
+        }
 
-//    public async Task<IEnumerable<Product>> GetByCategoryAsync(Guid categoryId)
-//    {
-//        var spec = new ProductsByCategorySpecification(categoryId);
-//        return await _unitOfWork.Products.GetAllAsync(spec);
-//    }
+        public async Task CreateProductAsync(ProductCreateViewModel model,string imagePath,string userId)
+        {
+            var product = _mapper.Map<Product>(model);
+            product.ImagePath = imagePath;
+            product.CreatedByUserId = userId;
+            product.CreatedAt = DateTime.UtcNow;
 
-//    public async Task<IEnumerable<Product>> SearchByNameAsync(string name)
-//    {
-//        var spec = new ProductsByNameSpecification(name);
-//        return await _unitOfWork.Products.GetAllAsync(spec);
-//    }
-//}
+            await _unitOfWork.ProductRepository.AddAsync(product);
+            await _unitOfWork.SaveChangesAsync();            
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            var product = await _unitOfWork.ProductRepository.GetByIdAsync(id);
+            if(product is null) return;
+
+            _unitOfWork.ProductRepository.Delete(product);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<ProductViewModel>> GetByCategoryAsync(Guid categoryId)
+        {
+            var spec = new ProductsByCategorySpecification(categoryId);
+            var products = await _unitOfWork.ProductRepository.GetAllAsync(spec);
+            return _mapper.Map<IEnumerable<ProductViewModel>>(products);
+        }
+
+        public async Task<IEnumerable<ProductViewModel>> SearchByNameAsync(string searchTerm)
+        {
+            var spec = new ProductsByNameSpecification(searchTerm);
+            var products = await _unitOfWork.ProductRepository.GetAllAsync(spec);
+            return _mapper.Map<IEnumerable<ProductViewModel>>(products);
+        }
+    }
+}
+

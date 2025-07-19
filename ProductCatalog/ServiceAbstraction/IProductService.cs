@@ -1,12 +1,15 @@
-﻿
+﻿using Shared.ViewModels.Product;
 
-
-namespace Services.ServiceAbstractions;
-
-public interface IProductService
+namespace ServiceAbstractions
 {
-    Task<IEnumerable<Product>> GetAllAsync();
-    Task<IEnumerable<Product>> GetAvailableNowAsync();
-    Task<IEnumerable<Product>> GetByCategoryAsync(Guid categoryId);
-    Task<IEnumerable<Product>> SearchByNameAsync(string name);
+    public interface IProductService
+    {
+        Task<IEnumerable<ProductViewModel>> GetAvailableProductsAsync();
+        Task CreateProductAsync(ProductCreateViewModel model,string imagePath,string userId);
+        Task<ProductViewModel> GetByIdAsync(Guid id);
+        Task DeleteAsync(Guid id);
+        Task<IEnumerable<ProductViewModel>> GetAllAsync();
+        Task<IEnumerable<ProductViewModel>> GetByCategoryAsync(Guid categoryId);
+        Task<IEnumerable<ProductViewModel>> SearchByNameAsync(string searchTerm);
+    }
 }
