@@ -18,6 +18,11 @@ public class ApplicationDbContext:DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // Product & ProductHistory
+        modelBuilder.Entity<Product>()
+      .HasMany(p => p.History)
+      .WithOne(h => h.Product)
+      .HasForeignKey(h => h.ProductId);
         // Seeding Categories
         modelBuilder.Entity<Category>().HasData(
             new Category { Id = Guid.Parse("11111111-1111-1111-1111-111111111111"),Name = "Electronics" },

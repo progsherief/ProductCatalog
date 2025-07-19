@@ -1,25 +1,19 @@
-﻿
-using ProductCatalog.Core.Domain.Common;
+﻿using ProductCatalog.Core.Domain.Common;
 
 namespace ProductCatalog.Core.Domain.Entities;
 
 public class Product:BaseEntity<Guid>
-{ 
-    public Guid Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public DateTime CreationDate { get; set; } = DateTime.UtcNow;
-    public string CreatedByUserId { get; set; } = string.Empty;
-    public DateTime StartDate { get; set; }
-    public TimeSpan Duration { get; set; }
+{
+    public string Name { get; set; } = default!;
     public decimal Price { get; set; }
-    public string ImagePath { get; set; } = string.Empty;
+    public DateTime StartDate { get; set; }
+    public int DurationInDays { get; set; }
 
-    // Navigation
     public Guid CategoryId { get; set; }
-    public Category? Category { get; set; }
+    public Category Category { get; set; } = default!;
 
-    public bool IsCurrentlyVisible =>
-        DateTime.UtcNow >= StartDate && DateTime.UtcNow <= StartDate.Add(Duration);
+    public string ImagePath { get; set; } = default!;
 
+    // ✅ Navigation
     public ICollection<ProductHistory> History { get; set; } = new List<ProductHistory>();
 }
