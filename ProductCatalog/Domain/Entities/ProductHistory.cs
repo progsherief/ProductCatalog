@@ -1,29 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProductCatalog.Core.Domain.Common;
 
-namespace Domain.Entities
+namespace ProductCatalog.Core.Domain.Entities;
+
+public class ProductHistory:BaseEntity<Guid>
 {
-    public class ProductHistory
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public DateTime CreationDate { get; set; } = DateTime.UtcNow;
-        public string CreatedByUserId { get; set; } = string.Empty;
-        public DateTime StartDate { get; set; }
-        public TimeSpan Duration { get; set; }
-        public decimal Price { get; set; }
-        public string ImagePath { get; set; } = string.Empty;
+    public Guid Id { get; set; }
+    public Guid ProductId { get; set; }
+    public string OldName { get; set; } = string.Empty;
+    public decimal OldPrice { get; set; }
+    public DateTime OldStartDate { get; set; }
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public string UpdatedByUserId { get; set; } = string.Empty;
 
-        // Navigation
-        public Guid CategoryId { get; set; }
-        public Category? Category { get; set; }
-
-        public bool IsCurrentlyVisible =>
-            DateTime.UtcNow >= StartDate && DateTime.UtcNow <= StartDate.Add(Duration);
-
-        public ICollection<ProductHistory> History { get; set; } = new List<ProductHistory>();
-    }
+    // Navigation
+    public Product? Product { get; set; }
 }

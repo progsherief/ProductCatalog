@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProductCatalog.Core.Domain.Common;
 
-namespace Domain.Entities
+namespace ProductCatalog.Core.Domain.Entities;
+
+public class Category:BaseEntity<Guid>
 {
-    public class Category
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+    public Guid Id { get; set; }
+    public string Name { get; set; } = string.Empty;
 
-        public ICollection<Product> Products { get; set; } = new List<Product>();
-
-    }
+    public ICollection<Product> Products { get; set; } = new List<Product>();
 }

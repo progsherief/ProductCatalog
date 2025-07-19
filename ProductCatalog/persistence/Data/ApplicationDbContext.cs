@@ -1,6 +1,5 @@
-﻿using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-
+﻿using Microsoft.EntityFrameworkCore;
+using ProductCatalog.Core.Domain.Entities;
 
 namespace ProductCatalog.Infrastructure.Persistence;
 
