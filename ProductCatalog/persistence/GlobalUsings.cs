@@ -4,6 +4,9 @@ global using System.Linq.Expressions;
 global using Domain.Contracts;
 global using Infrastructure.Persistence.Repositories;
 
+global using Services;
+
+global using Services.ServiceAbstractions;
 
 global using ProductCatalog.Infrastructure.Persistence;
 // Domain & Contracts

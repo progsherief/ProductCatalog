@@ -1,5 +1,5 @@
 ﻿
-using Infrastructure.Persistence.Repositories;
+
 
 namespace Infrastructure.Persistence;
 
@@ -14,6 +14,7 @@ public static class InfrastructureServiceRegistration
         // Register Generic Repository
         services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
         services.AddScoped<IUnitOfWork,UnitOfWork>();
+        services.AddScoped<IProductService,ProductService>();
         // Register Unit of Work
         //services.AddScoped<IUnitOfWork,UnitOfWork>();
 
