@@ -23,7 +23,7 @@ namespace Shared.ViewModels.Product
         [Required]
         public Guid CategoryId { get; set; }
 
-        public IFormFile? ImageFile { get; set; } // optional if not changed
+        public IFormFile? ImageFile { get; set; }
         public string? ImagePath { get; set; }
     }
 }
