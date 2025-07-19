@@ -1,9 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ProductCatalog.Core.Domain.Entities;
+﻿namespace ProductCatalog.Infrastructure.Persistence;
 
-namespace ProductCatalog.Infrastructure.Persistence;
-
-public class ApplicationDbContext:DbContext
+public class ApplicationDbContext:IdentityDbContext<ApplicationUser>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
