@@ -39,7 +39,7 @@ namespace WebApp.Controllers
             if(!ModelState.IsValid)
                 return View(model);
 
-            // ✅ Validate and save image
+            // ✅Validate and save image
             if(model.ImageFile != null)
             {
                 if(!FileHelper.ValidateImage(model.ImageFile,out var error))

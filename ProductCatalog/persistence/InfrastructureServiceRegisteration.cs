@@ -1,6 +1,4 @@
 ﻿
-
-
 using ProductCatalog.Infrastructure.Repositories;
 using ServiceAbstractions;
 using Services.Implementations;

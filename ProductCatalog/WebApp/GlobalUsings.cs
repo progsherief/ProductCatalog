@@ -10,3 +10,5 @@ global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc.Rendering;
 global using Microsoft.AspNetCore.Mvc;
 global using ServiceAbstractions;
+global using Shared.ViewModels.Product;
+global using Shared.ViewModels.Category;
